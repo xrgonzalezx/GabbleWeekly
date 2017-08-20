@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Gabble</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://use.fontawesome.com/7965372ad4.js"></script>
+</head>
+
+<body>
+  <div class="background">
+    <div class="head">
+      <div class="user">
+        <p id="greeting">Logged in as: {{user.username}}</p>
+      </div>
+      <div class="sign_out">
+        <form class="" action="/logout" method="post">
+          <input type="submit" name="" value="Sign out!">
+        </form>
+      </div>
+    </div>
+    <div class="post_msg">
+      <a href="/message/new">Post a message!</a>
+    </div>
+
+    {{#messages}}
+      <div class="card">
+      <div class="user_msg">
+        <div class="msg">
+          <h3><small>{{username}}</small>: {{title}}</h3>
+          <blockquote>{{body}}</blockquote>
+          <small>Create at {{createAt}}</small>
+        </div>
+        <div class="like">
+          <form class="" action="/message/{{_id}}/like" method="post">
+            <button type="submit">Like!</button>
+            <a href="/message/{{id}}/user">{{totalLikes}} Like</a>
+          </form>
+          <form class="delete_msg" action="/message/{{_id}}/delete" method="post">
+            <button type="submit" name="button">Delete</button>
+            <a class="btn btn-danger" aria-label="Delete">
+              <i class="fa fa-trash-o" aria-hidden="true"></i>
+            </a>
+          </form>
+        </div>
+      </div>
+      </div>
+    {{/messages}}
+  </div>
+</body>
+
+</html>
